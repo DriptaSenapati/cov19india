@@ -26,5 +26,4 @@ jobs:
         EMAIL_ID: ${{ secrets.EMAIL_ID }}
         USER_NAME: ${{ secrets.USER_NAME }}
       run: |
-        chmod +x update.sh
         ./update.sh
