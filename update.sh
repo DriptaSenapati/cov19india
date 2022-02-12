@@ -14,7 +14,7 @@ pip3 install -r requirements.txt
 python3 main.py
 
 
-
+git fetch
 git checkout "$gh_branch"
 
 echo "moving updated data to main folder"
