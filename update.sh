@@ -14,17 +14,21 @@ pip3 install -r requirements.txt
 python3 main.py
 
 
-git fetch
-git checkout "$gh_branch"
+if [ -d "temp" ]; then
+    git fetch
+    git checkout "$gh_branch"
 
-echo "moving updated data to main folder"
-mv -v -f temp/* data/
-rm -rf temp/
+    echo "moving updated data to main folder"
+    mv -v -f temp/* data/
+    rm -rf temp/
 
-git status
-git add .
-git commit -m "datasets updated on - $(date)"
+    git status
+    git add .
+    git commit -m "datasets updated on - $(date)"
 
-git push origin "$gh_branch"
+    git push origin "$gh_branch"
 
-echo "data update done."
+    echo "data update done."
+else 
+    echo "No Update available"
+fi
