@@ -20,7 +20,7 @@ def getLastUpdatedDate(url):
     with urllib.request.urlopen(url) as url:
         lastData = json.loads(url.read().decode())
         
-    return lastData["UpdatedDate"]
+    return lastData["UpdatedTill"]
 
 
 def create(startDate,endDate,obj,dis_obj,curr_path):
@@ -73,6 +73,10 @@ def create(startDate,endDate,obj,dis_obj,curr_path):
 
 def update(obj,dis_obj,curr_path):
     print("Checking any new date are found or not....")
+    
+    if "data" not in os.listdir(curr_path):
+        os.mkdir(os.path.join(curr_path,"data"))
+        
     data_path = os.path.join(curr_path,"data")
 
     lastDate = getLastUpdatedDate(url = "https://driptasenapati.github.io/cov19india/data/india_current.json")
@@ -116,8 +120,6 @@ def update(obj,dis_obj,curr_path):
             curr_file_name = f"india_{(save_date + timedelta(days=d)).strftime('%m-%d-%Y')}.json"
             if(save_date + timedelta(days=d) == api_date):
                 curr_file_name = "india_current.json"
-                with open(os.path.join(curr_path,curr_file_name),"w") as f:
-                    json.dump(res_json,f)
             
             with open(os.path.join(data_path,curr_file_name),"w") as f:
                 json.dump(res_json,f)
