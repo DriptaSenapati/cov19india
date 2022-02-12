@@ -74,10 +74,7 @@ def create(startDate,endDate,obj,dis_obj,curr_path):
 def update(obj,dis_obj,curr_path):
     print("Checking any new date are found or not....")
     
-    if "temp" not in os.listdir(curr_path):
-        os.mkdir(os.path.join(curr_path,"temp"))
-        
-    data_path = os.path.join(curr_path,"temp")
+    
 
     lastDate = getLastUpdatedDate(url = "https://driptasenapati.github.io/cov19india/data/india_current.json")
         
@@ -86,6 +83,10 @@ def update(obj,dis_obj,curr_path):
     if api_date > save_date:
         print(f"New dates are found. Database is updating to {obj.lastDate}...")
         
+        if "temp" not in os.listdir(curr_path):
+            os.mkdir(os.path.join(curr_path,"temp"))
+        
+        data_path = os.path.join(curr_path,"temp")
         
         sep_res_json = {
             "Charts": {
