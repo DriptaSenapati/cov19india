@@ -74,10 +74,10 @@ def create(startDate,endDate,obj,dis_obj,curr_path):
 def update(obj,dis_obj,curr_path):
     print("Checking any new date are found or not....")
     
-    if "data" not in os.listdir(curr_path):
-        os.mkdir(os.path.join(curr_path,"data"))
+    if "temp" not in os.listdir(curr_path):
+        os.mkdir(os.path.join(curr_path,"temp"))
         
-    data_path = os.path.join(curr_path,"data")
+    data_path = os.path.join(curr_path,"temp")
 
     lastDate = getLastUpdatedDate(url = "https://driptasenapati.github.io/cov19india/data/india_current.json")
         
